@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello Vue To Do List</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+
+  <label>Please enter your to-do task:</label>
+  <br><br>
+  <input v-model="newTask">
+  <!-- v-model creates a two-way data binding...
+       between an input element and the component's data -->
+
+  <br><br>
+  <button v-on:click="addTask">Add Task</button>
+  <!-- v-on is used to attach an event listener -->
+  <!-- need to provide event type (click)...
+  and any method that should run when event occurs (addTask) -->
+
+  <h2>Task List</h2>
+  <ul>
+    <li v-for="task in taskList">
+      <!-- v-for is used to render multiple elements based on a data source -->
+      <!-- v-for requires syntax in the form of 'item in items' -->
+      <!-- item is an alias for the element being iterated upon -->
+      <!-- comments from vuejs.org -->
+      {{ task }}
+      <!-- {{ }} is vue specific syntax for displaying dynamic data in HTML -->
+    </li>
+  </ul>
+
+</div>
+
+<script>
+  const { createApp, ref } = Vue
+  // every vue app starts by creating a new CreateApp function
+
+  createApp({
+    setup() {
+
+      const taskList = ref(['Water plants', 'Pay cellphone bill', 'Wash floors'])
+      const newTask = ref('')
+
+      function addTask () {
+          // add the newTask to the taskList
+        if (newTask.value) {
+          taskList.value.push(newTask.value)
+          newTask.value = ''
+        }
+      } // end of addTask function
+
+      return {
+        taskList,
+        newTask,
+        addTask
+      }
+    }
+  }).mount('#app')
+
+</script>
+
+</body>
+</html>

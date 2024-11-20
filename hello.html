@@ -14,26 +14,56 @@
       <h1>Hello Vue!</h1>
 
       <p>{{ message }}</p>
+      <p>{{ messageWithExclamationPoints }}</p>
 
+      <button v-on:click="addExclamationPoints">Add Exclamation Points</button>
+      <button v-on:click="clearExclamationPoints">Clear</button>
     </div>
 
     <script>
       // set up vue app
 
-      const { createApp, ref } = Vue
+      const { createApp, ref, computed } = Vue
 
       createApp({
         setup() {
           // define things our Vue app needs here
 
-          const message = ref('Hi!')
+        const message = ref('Hi')
+        const numberOfExclamationPoints = ref(0)
 
-          return {
-            message
+        function addExclamationPoints() {
+          if (numberOfExclamationPoints.value < 10) {
+              numberOfExclamationPoints.value ++
+          } else {
+              alert('No more exclamation points!')
           }
         }
-      }).mount('#app')
 
+        function clearExclamationPoints() {
+          numberOfExclamationPoints.value = 0
+        }
+
+        const messageWithExclamationPoints = computed(function(){
+            let computedMessage = message.value
+            // add ! based on numberOfExclamationPoints
+            for (let x = 0; x < numberOfExclamationPoints.value; x++) {
+                computedMessage = computedMessage + '!'
+            }
+            return computedMessage
+        })
+
+        return {
+            message,
+            numberOfExclamationPoints,
+            messageWithExclamationPoints,
+            addExclamationPoints,
+            clearExclamationPoints
+        }
+
+        }       // end of setup function
+
+      }).mount('#app')      // end of createapp function, using mount #app to add this app to HTML
 
     </script>
 
