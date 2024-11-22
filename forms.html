@@ -19,6 +19,7 @@
     <!-- v-if shows elements based on boolean value -->
 
     <button v-on:click="clearName">Clear Name</button>
+    <!-- v-on is used to attach an event listener -->
 
 </div>
 
@@ -31,7 +32,7 @@
             const name = ref('')    //empty string
 
             function clearName() {
-                name.value = ''
+                name.value = ''     // empty name value
             }
 
             return {

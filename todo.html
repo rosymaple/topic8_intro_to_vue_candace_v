@@ -45,20 +45,21 @@
 
       const taskList = ref(['Water plants', 'Pay cellphone bill', 'Wash floors'])
       const newTask = ref('')
+      // newTask is empty value
 
       function addTask () {
           // add the newTask to the taskList
-        if (newTask.value) {
-          taskList.value.push(newTask.value)
-          newTask.value = ''
-        }
+        if (newTask.value) {    // if user inputs into newTask ...
+          taskList.value.push(newTask.value)    // push the new task to task list
+          newTask.value = ''    // reset newTask input
+        }   // end of if statement
       } // end of addTask function
 
       return {
         taskList,
         newTask,
         addTask
-      }
+      }     // return values
     }
   }).mount('#app')
 

@@ -27,9 +27,9 @@
       </tr>
 
       <tr>
-        <td>{{ name }}</td>
+        <td>{{ name }}</td>     <!-- display Vue value onto HTML with {} -->
         <td>{{ unitPrice }}</td>
-        <td><input type="number" v-model="quantity"></td>
+        <td><input type="number" v-model="quantity"></td>     <!-- use v-model for two-way data binding-->
         <td>{{ total }}</td>
       </tr>
     </table>
@@ -48,13 +48,13 @@
       const quantity = ref(1)
       const unitPrice = ref(4.99)
 
-      const total = computed( function() {
+      const total = computed( function() {    // calculate total price of hats
         const totalPrice = quantity.value * unitPrice.value
-        const formattedPrice = totalPrice.toFixed(2)
+        const formattedPrice = totalPrice.toFixed(2)    // decimal points
         return formattedPrice
-      })
+      })    // end of computed function
 
-      return {
+      return {    // return values
         name,
         quantity,
         unitPrice,

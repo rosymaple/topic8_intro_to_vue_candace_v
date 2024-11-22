@@ -13,7 +13,7 @@
 
       <h1>Hello Vue!</h1>
 
-      <p>{{ message }}</p>
+      <p>{{ message }}</p>      <!-- display Vue app value here. message is static variable -->
       <p>{{ messageWithExclamationPoints }}</p>
 
       <button v-on:click="addExclamationPoints">Add Exclamation Points</button>
@@ -29,19 +29,19 @@
         setup() {
           // define things our Vue app needs here
 
-        const message = ref('Hi')
-        const numberOfExclamationPoints = ref(0)
+        const message = ref('Hi')       // original message value = Hi
+        const numberOfExclamationPoints = ref(0)        // no exclamation points to start with
 
         function addExclamationPoints() {
-          if (numberOfExclamationPoints.value < 10) {
+          if (numberOfExclamationPoints.value < 10) {       // only add up to 10 exclamation points, or alert message
               numberOfExclamationPoints.value ++
           } else {
-              alert('No more exclamation points!')
-          }
+              alert('No more exclamation points!')      // use alert if user tries to add more than 10.
+          }     // end of if-else
         }
 
         function clearExclamationPoints() {
-          numberOfExclamationPoints.value = 0
+          numberOfExclamationPoints.value = 0       // clear exclamationPoints
         }
 
         const messageWithExclamationPoints = computed(function(){
@@ -49,7 +49,8 @@
             // add ! based on numberOfExclamationPoints
             for (let x = 0; x < numberOfExclamationPoints.value; x++) {
                 computedMessage = computedMessage + '!'
-            }
+            }       // for every exclamation point added using addExclamationPoints function...
+            // return computedMessage
             return computedMessage
         })
 
@@ -63,7 +64,7 @@
 
         }       // end of setup function
 
-      }).mount('#app')      // end of createapp function, using mount #app to add this app to HTML
+      }).mount('#app')      // end of createApp function, using mount #app to add this app to HTML
 
     </script>
 
